@@ -9,7 +9,8 @@ def Make_CrystalMakerFile(elements,
                             AtomContributionValues, 
                             m, 
                             saveResults, 
-                            threshold):
+                            threshold,
+                            num_metals: int):
     """
      Creates a CrystalMaker file with color-coded atoms based on the contribution
      values that are output from ML MotEx
@@ -20,10 +21,11 @@ def Make_CrystalMakerFile(elements,
       m
       saveResults
       threshold
+      num_metals
     """
 
 
-    # Output a crystalmaker file to visualize the results
+    # Output a crystalmaker file header to visualize the results
     CrystalMaker = open(saveResults+'CrystalMaker_MotEx.cmtx', 'w')
 
     CrystalMaker.write("MOLE  CrystalMaker molecule format\n")
@@ -39,7 +41,7 @@ def Make_CrystalMakerFile(elements,
 
     # Assign colors to all the atoms
     for iter, element in enumerate(elements):
-        if iter < NumMo:
+        if iter < num_metals:
             CrystalMaker.write(element + str(iter+1) + " 1.32 ")
             rgb1 = m.to_rgba(AtomContributionValues[iter])[:-1][0]
             rgb2 = m.to_rgba(AtomContributionValues[iter])[:-1][1]
@@ -60,7 +62,7 @@ def Make_CrystalMakerFile(elements,
     
     # Assign bonds between the atoms
     for iter, element in enumerate(elements):
-        if iter < NumMo:
+        if iter < num_metals:
             NI_elements = np.delete(np.unique(elements), np.where(np.unique(elements) == element)[0])
             for NI_element in NI_elements:
                 CrystalMaker.write(f"BMAX {element}} {NI_element}  {threshold}"))
@@ -72,7 +74,7 @@ def Make_CrystalMakerFile(elements,
     
     # Assign coordinates to the atoms
     for iter, element in enumerate(elements):
-        if iter < NumMo:
+        if iter < num_metals:
             CrystalMaker.write(f'{element} {element} {iter+1} {xyz[iter][0]} {xyz[iter][1]} {xyz[iter][2]}\n')
         else:
             CrystalMaker.write(f'{element} {element} {iter+1} {xyz[iter][0]} {xyz[iter][1]} {xyz[iter][2]}\n')
