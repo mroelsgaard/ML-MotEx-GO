@@ -41,19 +41,18 @@ def Make_CrystalMakerFile(elements,
 
     # Assign colors to all the atoms
     for iter, element in enumerate(elements):
+        # iterate all the atoms and colorize based on
+        # contribution values for the metals only
         if iter < num_metals:
-            CrystalMaker.write(element + str(iter+1) + " 1.32 ")
-            rgb1 = m.to_rgba(AtomContributionValues[iter])[:-1][0]
-            rgb2 = m.to_rgba(AtomContributionValues[iter])[:-1][1]
-            rgb3 = m.to_rgba(AtomContributionValues[iter])[:-1][2]
-            CrystalMaker.write(f'{rgb1} {rgb2} {rgb3}')
+            CrystalMaker.write(f'{element}{iter+1} 1.32')
+            rgb = m.to_rgba(AtomContributionValues[iter])[:-1]
+            CrystalMaker.write(f'{rgb[0]} {rgb[1]} {rgb[2]}')
             CrystalMaker.write("\n")
         else:
+            # color the rest
             CrystalMaker.write(f'{element}{iter+1} 0.66')
-            rgb1 = mpl.colors.to_rgb("#FF0000")[0]
-            rgb2 = mpl.colors.to_rgb("#FF0000")[1]
-            rgb3 = mpl.colors.to_rgb("#FF0000")[2]
-            CrystalMaker.write(f'{rgb1} {rgb2} {rgb3}')
+            rgb = mpl.colors.to_rgb("#FF0000")
+            CrystalMaker.write(f'{rgb[0]} {rgb[1]} {rgb[2]}')
             CrystalMaker.write("\n")
     
     CrystalMaker.write("\n")
