@@ -1,3 +1,11 @@
+# ML-MotEx-GO
+
+This explores the ML-MotEx tool with a gallium oxide sample. This is not a finalized project, so any data is not shared here.
+
+See https://github.com/AndySAnker/ML-MotEx for more details.
+
+# references
+
 [ChemRxiv](https://chemrxiv.org/engage/chemrxiv/article-details/6263f48f5b900913a0195c4f)  |  [Paper] XXX
 
 # Machine Learning based Motif Extractor (ML-MotEx)
