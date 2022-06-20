@@ -1,7 +1,12 @@
-
-# Created by https://www.toptal.com/developers/gitignore/api/python,pycharm,macos
-# Edit at https://www.toptal.com/developers/gitignore?templates=python,pycharm,macos
-
+# MartinR's additions
+Results
+Structure_Models
+Experimental_Data
+Install
+Training_Data
+*.dat
+*.png
+*.txt
 ### macOS ###
 # General
 .DS_Store
