@@ -12,7 +12,7 @@ Training_Data
 .DS_Store
 .AppleDouble
 .LSOverride
-*.cmtx
+#*.cmtx
 
 # Icon must end with two \r
 Icon
