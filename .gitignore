@@ -1,6 +1,8 @@
 # MartinR's additions
 Results
-Structure_Models
+#Structure_Models
+#ignore the CIF file, not the clusters
+*.cif
 Experimental_Data
 Install
 Training_Data
